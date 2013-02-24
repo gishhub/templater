@@ -18,6 +18,7 @@
 		B77F2E1116ABF15300E2F0C2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B77F2E1016ABF15300E2F0C2 /* Default-568h@2x.png */; };
 		B77F2E1416ABF15300E2F0C2 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B77F2E1216ABF15300E2F0C2 /* MainStoryboard.storyboard */; };
 		B79DD62B16CF87FC00502795 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B79DD62A16CF87FC00502795 /* TableViewController.m */; };
+		B7AEC10216DA337000E65C84 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AEC10116DA337000E65C84 /* PostViewController.m */; };
 		B7D567D516DA114800F30014 /* SampleIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B7D567D416DA114800F30014 /* SampleIcon.png */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,8 @@
 		B77F2E1316ABF15300E2F0C2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		B79DD62916CF87FC00502795 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		B79DD62A16CF87FC00502795 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		B7AEC10016DA337000E65C84 /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
+		B7AEC10116DA337000E65C84 /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
 		B7D567D416DA114800F30014 /* SampleIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SampleIcon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +95,8 @@
 				B77F2E0116ABF15300E2F0C2 /* Supporting Files */,
 				B79DD62916CF87FC00502795 /* TableViewController.h */,
 				B79DD62A16CF87FC00502795 /* TableViewController.m */,
+				B7AEC10016DA337000E65C84 /* PostViewController.h */,
+				B7AEC10116DA337000E65C84 /* PostViewController.m */,
 			);
 			path = templater;
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 				B77F2E0716ABF15300E2F0C2 /* main.m in Sources */,
 				B77F2E0B16ABF15300E2F0C2 /* AppDelegate.m in Sources */,
 				B79DD62B16CF87FC00502795 /* TableViewController.m in Sources */,
+				B7AEC10216DA337000E65C84 /* PostViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
