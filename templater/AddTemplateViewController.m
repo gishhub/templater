@@ -55,20 +55,28 @@
 - (IBAction)saveAddTemplate:(id)sender {
     NSLog(@"push saveAddTemplate");
     
-    NSString *test_string = @"test_value";
-    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    // テンプレート保存
-    [defaults setValue:test_string forKey:@"Key_TEST_STRING"];
+    // テンプレート情報を初期化
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    
+    // テンプレート情報が存在したら、取り出す
+    if([defaults dataForKey:@"TEMPRATE"]){
+        NSData *reverse_tmp = [defaults dataForKey:@"TEMPRATE"];
+        dic = [NSKeyedUnarchiver unarchiveObjectWithData:reverse_tmp];
+    }
+    
+    // 新規に入力したテンプレートを取得
+    NSString *tmp_key = _titleTemplate.text;
+    NSString *tmp_value = _textTemplate.text;
+    
+    [dic setObject:tmp_value forKey:tmp_key];
+    
+    // 新規に入力したテンプレートを保存
+    NSData *d = [NSKeyedArchiver archivedDataWithRootObject:dic];
+    [defaults setObject:d forKey:@"TEMPRATE"];
+    
 
-    NSString *test_tmp = [defaults stringForKey:@"Key_TEST_STRING"];
-    
-    NSString *tmp_text = _titleTemplate.text;
-    
-    NSLog(@"Test template is %@.", test_tmp);
-    NSLog(@"Title Template is %@.", tmp_text);
-    
     // テンプレートリスト画面に戻る
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
