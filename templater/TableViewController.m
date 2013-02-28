@@ -35,6 +35,11 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (IBAction)pressComposeButton:(id)sender {
+
+    NSLog(@"press button.");
+}
+
 - (void)configureView
 {
     tableListData = [[NSArray alloc] initWithObjects:@"AAA", @"BBB", nil];
@@ -126,5 +131,7 @@
     NSUInteger row = [indexPath row];
     NSLog(@"選択された行は『%d行目』です！", row);
 }
+
+
 
 @end

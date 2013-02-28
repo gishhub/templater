@@ -12,6 +12,7 @@
 {
     NSArray *tableListData;
 }
+- (IBAction)pressComposeButton:(id)sender;
 
 - (void)configureView;
 
