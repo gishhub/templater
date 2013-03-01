@@ -14,6 +14,6 @@
 }
 - (IBAction)pressComposeButton:(id)sender;
 
-- (void)configureView;
+@property (weak, nonatomic) IBOutlet UITableViewCell *templateCell;
 
 @end

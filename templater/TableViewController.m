@@ -14,35 +14,65 @@
 
 @implementation TableViewController
 
+@synthesize templateCell = _templateCell;
+
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
     }
+
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self configureView];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+   
+    /*
+    for(NSString *str in dic){
+        [tableListData arrayByAddingObject:str];
+    }
+    
+    for(NSString *str in dic){
+        NSLog(@"In dic, %@", str);
+    }
+    
+    for(NSString *str in tableListData){
+        NSLog(@"In array, %@", str);
+    }
+     */
+    
+    
+    
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    
+    tableListData = [[NSArray alloc] initWithObjects:nil];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSData *d = [defaults dataForKey:@"TEMPLATE"];
+    
+    NSDictionary *dic = [NSKeyedUnarchiver unarchiveObjectWithData:d];
+    
+    [super viewWillAppear:animated];
 }
 
 - (IBAction)pressComposeButton:(id)sender {
 
     NSLog(@"press button.");
-}
-
-- (void)configureView
-{
-    tableListData = [[NSArray alloc] initWithObjects:@"AAA", @"BBB", nil];
 }
 
 

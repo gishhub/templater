@@ -61,8 +61,8 @@
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     
     // テンプレート情報が存在したら、取り出す
-    if([defaults dataForKey:@"TEMPRATE"]){
-        NSData *reverse_tmp = [defaults dataForKey:@"TEMPRATE"];
+    if([defaults dataForKey:@"TEMPLATE"]){
+        NSData *reverse_tmp = [defaults dataForKey:@"TEMPLATE"];
         dic = [NSKeyedUnarchiver unarchiveObjectWithData:reverse_tmp];
     }
     
@@ -74,10 +74,18 @@
     
     // 新規に入力したテンプレートを保存
     NSData *d = [NSKeyedArchiver archivedDataWithRootObject:dic];
-    [defaults setObject:d forKey:@"TEMPRATE"];
+    [defaults setObject:d forKey:@"TEMPLATE"];
     
-
+    
+    // デバッグ用
+    NSData *release = [defaults dataForKey:@"TEMPLATE"];
+    NSMutableDictionary *tmp = [NSKeyedUnarchiver unarchiveObjectWithData:release];
+    NSLog(@"aaa %@", tmp);
+    
     // テンプレートリスト画面に戻る
     [self dismissViewControllerAnimated:YES completion:NULL];
+    
+
+    
 }
 @end

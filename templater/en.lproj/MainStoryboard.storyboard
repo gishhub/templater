@@ -135,29 +135,6 @@
             <point key="canvasLocation" x="623" y="539"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="AddTemplateViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddTemplateViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelAddTemplate:"/>
-                <relationship kind="action" name="saveAddTemplate:"/>
-                <relationship kind="outlet" name="textTemplate" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="titleTemplate" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="PostViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PostViewController.h"/>
-        </class>
-        <class className="TableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="pressComposeButton:"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
