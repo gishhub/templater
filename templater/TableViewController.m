@@ -61,12 +61,18 @@
     
     tableListData = [[NSArray alloc] initWithObjects:nil];
     
+    // NSUserDefaultsからデータを取得
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
     NSData *d = [defaults dataForKey:@"TEMPLATE"];
-    
     NSDictionary *dic = [NSKeyedUnarchiver unarchiveObjectWithData:d];
     
+    // cellのリストに取得したデータを入れる
+    for(NSString *str in dic){
+        tableListData = [tableListData arrayByAddingObject:str];
+    }
+    
+    // 表示をリロード
+    [self.tableView reloadData];
     [super viewWillAppear:animated];
 }
 
@@ -93,6 +99,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     

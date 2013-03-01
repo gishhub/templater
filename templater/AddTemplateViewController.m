@@ -82,6 +82,8 @@
     NSMutableDictionary *tmp = [NSKeyedUnarchiver unarchiveObjectWithData:release];
     NSLog(@"aaa %@", tmp);
     
+    [defaults synchronize];
+    
     // テンプレートリスト画面に戻る
     [self dismissViewControllerAnimated:YES completion:NULL];
     
