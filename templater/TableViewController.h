@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PostViewController.h"
 
 @interface TableViewController : UITableViewController
 {
@@ -15,5 +16,6 @@
 - (IBAction)pressComposeButton:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *templateCell;
+@property (strong, nonatomic) PostViewController *postViewController;
 
 @end

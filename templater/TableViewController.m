@@ -16,7 +16,6 @@
 
 @synthesize templateCell = _templateCell;
 
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -36,23 +35,6 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-   
-    /*
-    for(NSString *str in dic){
-        [tableListData arrayByAddingObject:str];
-    }
-    
-    for(NSString *str in dic){
-        NSLog(@"In dic, %@", str);
-    }
-    
-    for(NSString *str in tableListData){
-        NSLog(@"In array, %@", str);
-    }
-     */
-    
-    
     
     
 }
@@ -85,8 +67,6 @@
 #pragma mark - Table view data source
 
 
-
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -110,8 +90,6 @@
     NSInteger row = [indexPath row];
     cell.textLabel.font = [UIFont boldSystemFontOfSize:18];
     cell.textLabel.text = [tableListData objectAtIndex:row];
-    UIImage *image = [UIImage imageNamed:@"SampleIcon.png"];
-    cell.imageView.image = image;
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     
     return cell;
@@ -165,8 +143,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     NSUInteger row = [indexPath row];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    PostViewController *postViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"detail"];
+    
+    postViewController.title = cell.textLabel.text;
+    [[self navigationController] pushViewController:postViewController animated:YES];
+
+    
     NSLog(@"選択された行は『%d行目』です！", row);
+
 }
 
 

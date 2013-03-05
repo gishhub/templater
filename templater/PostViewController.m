@@ -14,6 +14,7 @@
 
 @implementation PostViewController
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,20 +28,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [self configureView];
-}
-
-- (void)configureView
-{
-
-    UITextView *customTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 10, 100, 100)];
-    
-    NSLog(@"テキストは『aaaa』");
-    customTextView.text = @"aaaa";
-    
-    customTextView.delegate = self;
-    
-    [self.view addSubview:customTextView];
 }
 
 - (void)didReceiveMemoryWarning

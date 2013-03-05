@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface PostViewController : UIViewController <UITextViewDelegate>
--(void) configureView;
 
 @end
