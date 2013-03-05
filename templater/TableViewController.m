@@ -151,6 +151,9 @@
     PostViewController *postViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"detail"];
     
     postViewController.title = cell.textLabel.text;
+    postViewController.selectedTitle = cell.textLabel.text;
+        
+    
     [[self navigationController] pushViewController:postViewController animated:YES];
 
     

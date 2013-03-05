@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PostViewController : UIViewController <UITextViewDelegate>
+@interface PostViewController : UIViewController <UITextFieldDelegate> {
+    NSString *selectedTitle;
+}
+
+@property (strong, nonatomic) NSString *selectedTitle;
 
 @end

@@ -14,6 +14,8 @@
 
 @implementation PostViewController
 
+@synthesize selectedTitle = _selectedTitle;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,6 +30,20 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *d = [defaults dataForKey:@"TEMPLATE"];
+    NSMutableDictionary *reverse = [NSKeyedUnarchiver unarchiveObjectWithData:d];
+    
+    NSString *tmp = self.selectedTitle;
+
+    UITextField *selectedTemplateText = [[UITextField alloc] initWithFrame:CGRectMake(10.0, 100.0, 300.0, 40.0)];
+    selectedTemplateText.borderStyle = UITextBorderStyleLine;
+    
+    selectedTemplateText.text = reverse[tmp];
+    
+    
+    [self.view addSubview:selectedTemplateText];
 }
 
 - (void)didReceiveMemoryWarning
