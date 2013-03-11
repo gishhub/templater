@@ -11,7 +11,7 @@
 
 @interface TableViewController : UITableViewController
 {
-    NSArray *tableListData;
+    NSMutableArray *tableListData;
 }
 - (IBAction)pressComposeButton:(id)sender;
 

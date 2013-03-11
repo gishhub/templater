@@ -34,15 +34,15 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSData *d = [defaults dataForKey:@"TEMPLATE"];
     NSMutableDictionary *reverse = [NSKeyedUnarchiver unarchiveObjectWithData:d];
+    NSLog(@"%@",reverse);
     
     NSString *tmp = self.selectedTitle;
 
     UITextField *selectedTemplateText = [[UITextField alloc] initWithFrame:CGRectMake(10.0, 100.0, 300.0, 40.0)];
     selectedTemplateText.borderStyle = UITextBorderStyleLine;
-    
-    selectedTemplateText.text = reverse[tmp];
-    
-    
+
+    selectedTemplateText.text = [reverse objectForKey:tmp];
+   
     [self.view addSubview:selectedTemplateText];
 }
 

@@ -41,18 +41,19 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     
-    tableListData = [[NSArray alloc] initWithObjects:nil];
+    tableListData = [[NSMutableArray alloc] initWithObjects:nil];
     
     // NSUserDefaultsからデータを取得
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSData *d = [defaults dataForKey:@"TEMPLATE"];
-    NSDictionary *dic = [NSKeyedUnarchiver unarchiveObjectWithData:d];
+    NSMutableDictionary *dic = [NSKeyedUnarchiver unarchiveObjectWithData:d];
+    
     
     // cellのリストに取得したデータを入れる
     for(NSString *str in dic){
-        tableListData = [tableListData arrayByAddingObject:str];
+        [tableListData addObject:str];
     }
-    
+
     // 表示をリロード
     [self.tableView reloadData];
     [super viewWillAppear:animated];
@@ -109,19 +110,34 @@
 }
 */
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        NSInteger row = [indexPath row];
+        
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        NSData *release = [defaults dataForKey:@"TEMPLATE"];
+        NSMutableDictionary *mdic = [NSKeyedUnarchiver unarchiveObjectWithData:release];
+        [mdic removeObjectForKey:tableListData[row]];
+              
+        // 新規に入力したテンプレートを保存
+        NSData *tmp_d = [NSKeyedArchiver archivedDataWithRootObject:mdic];
+        [defaults setObject:tmp_d forKey:@"TEMPLATE"];
+        
+        [tableListData removeObjectAtIndex: row];
+        
+        
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.
@@ -152,11 +168,11 @@
     
     postViewController.title = cell.textLabel.text;
     postViewController.selectedTitle = cell.textLabel.text;
-        
+
     
     [[self navigationController] pushViewController:postViewController animated:YES];
 
-    
+
     NSLog(@"選択された行は『%d行目』です！", row);
 
 }
