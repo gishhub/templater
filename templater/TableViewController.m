@@ -130,7 +130,6 @@
         
         [tableListData removeObjectAtIndex: row];
         
-        
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {

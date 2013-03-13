@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Social/Social.h>
 
 @interface PostViewController : UIViewController <UITextFieldDelegate> {
     NSString *selectedTitle;
+    UITextField *selectedTemplateText;
 }
 
 @property (strong, nonatomic) NSString *selectedTitle;
+@property (strong, nonatomic) UITextField *selectedTemplateText;
+
+- (IBAction)postFb:(id)sender;
+- (IBAction)updateTemplate:(id)sender;
 
 @end

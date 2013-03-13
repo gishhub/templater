@@ -20,6 +20,7 @@
 		B77F2E1416ABF15300E2F0C2 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B77F2E1216ABF15300E2F0C2 /* MainStoryboard.storyboard */; };
 		B79DD62B16CF87FC00502795 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B79DD62A16CF87FC00502795 /* TableViewController.m */; };
 		B7AEC10216DA337000E65C84 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AEC10116DA337000E65C84 /* PostViewController.m */; };
+		B7CE71A916F0B9C700B3237B /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7CE71A816F0B9C700B3237B /* Social.framework */; };
 		B7D567D516DA114800F30014 /* SampleIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B7D567D416DA114800F30014 /* SampleIcon.png */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		B79DD62A16CF87FC00502795 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		B7AEC10016DA337000E65C84 /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		B7AEC10116DA337000E65C84 /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
+		B7CE71A816F0B9C700B3237B /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		B7D567D416DA114800F30014 /* SampleIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SampleIcon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -52,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7CE71A916F0B9C700B3237B /* Social.framework in Frameworks */,
 				B77F2DFB16ABF15300E2F0C2 /* UIKit.framework in Frameworks */,
 				B77F2DFD16ABF15300E2F0C2 /* Foundation.framework in Frameworks */,
 				B77F2DFF16ABF15300E2F0C2 /* CoreGraphics.framework in Frameworks */,
@@ -64,6 +67,7 @@
 		B77F2DEB16ABF15300E2F0C2 = {
 			isa = PBXGroup;
 			children = (
+				B7CE71A816F0B9C700B3237B /* Social.framework */,
 				B77F2E0016ABF15300E2F0C2 /* templater */,
 				B77F2DF916ABF15300E2F0C2 /* Frameworks */,
 				B77F2DF716ABF15300E2F0C2 /* Products */,

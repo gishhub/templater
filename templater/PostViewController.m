@@ -15,6 +15,7 @@
 @implementation PostViewController
 
 @synthesize selectedTitle = _selectedTitle;
+@synthesize selectedTemplateText = _selectedTemplateText;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -38,12 +39,17 @@
     
     NSString *tmp = self.selectedTitle;
 
-    UITextField *selectedTemplateText = [[UITextField alloc] initWithFrame:CGRectMake(10.0, 100.0, 300.0, 40.0)];
+    selectedTemplateText = [[UITextField alloc] initWithFrame:CGRectMake(10.0, 100.0, 300.0, 40.0)];
     selectedTemplateText.borderStyle = UITextBorderStyleLine;
 
     selectedTemplateText.text = [reverse objectForKey:tmp];
    
     [self.view addSubview:selectedTemplateText];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField*)textField{
+    [selectedTemplateText resignFirstResponder];
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,4 +58,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)postFb:(id)sender {
+    
+    SLComposeViewController *facebookPostVC = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+    [facebookPostVC setInitialText:selectedTemplateText.text];
+    
+    [self presentViewController:facebookPostVC animated:YES completion:nil];
+}
+
+- (IBAction)updateTemplate:(id)sender {
+    NSLog(@"Push updateTemplate. %@", selectedTemplateText.text);
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSData *d = [defaults dataForKey:@"TEMPLATE"];
+    NSMutableDictionary *reverse = [NSKeyedUnarchiver unarchiveObjectWithData:d];
+    
+    [reverse setObject:selectedTemplateText.text forKey:self.selectedTitle];
+    
+    NSData *tmp_d = [NSKeyedArchiver archivedDataWithRootObject:reverse];
+    [defaults setObject:tmp_d forKey:@"TEMPLATE"];
+    
+    [defaults synchronize];
+    
+}
 @end
