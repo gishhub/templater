@@ -183,6 +183,7 @@
         <class className="PostViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PostViewController.h"/>
             <relationships>
+                <relationship kind="action" name="closeKeyboard:"/>
                 <relationship kind="action" name="postFb:"/>
                 <relationship kind="action" name="updateTemplate:"/>
             </relationships>

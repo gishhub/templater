@@ -41,6 +41,9 @@
 
     selectedTemplateText = [[UITextView alloc] initWithFrame:CGRectMake(10.0, 20.0, 300.0, 200.0)];
     selectedTemplateText.layer.borderWidth = 1;
+    selectedTemplateText.layer.borderColor =[[UIColor blackColor] CGColor];
+    selectedTemplateText.layer.cornerRadius = 8;
+    
 
     selectedTemplateText.text = [reverse objectForKey:tmp];
     
@@ -57,8 +60,6 @@
     closeButton.backgroundColor = [UIColor grayColor];
     
     [closeButton setImage:[UIImage imageNamed:@"SampleIcon.png"] forState:UIControlStateNormal];
-
-    // [closeButton setTitle:@" ▼" forState:UIControlStateNormal];
     [closeButton addTarget:self action:@selector(closeKeyboard:) forControlEvents:UIControlEventTouchUpInside];
     
     // ボタンをベースに配置する。

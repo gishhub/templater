@@ -48,9 +48,20 @@
     NSData *d = [defaults dataForKey:@"TEMPLATE"];
     NSMutableDictionary *dic = [NSKeyedUnarchiver unarchiveObjectWithData:d];
     
+    NSMutableArray *mary = [NSMutableArray array];
+
+    
+    // 取得した辞書のタイトルリストを作り、順番を整える
+    for(NSString *t in dic){
+        [mary addObject:t];
+    }
+    
+    NSArray *ary = [mary sortedArrayUsingComparator:^(id obj1, id obj2) {
+        return [obj1 compare:obj2];
+    }];
     
     // cellのリストに取得したデータを入れる
-    for(NSString *str in dic){
+    for(NSString *str in ary){
         [tableListData addObject:str];
     }
 
@@ -168,7 +179,6 @@
     postViewController.title = cell.textLabel.text;
     postViewController.selectedTitle = cell.textLabel.text;
 
-    
     [[self navigationController] pushViewController:postViewController animated:YES];
 
 
