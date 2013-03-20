@@ -32,12 +32,19 @@
     _titleTemplate.delegate = self;
     _textTemplate.delegate = self;
     
-    
     // タイトル部分設定
     _titleTemplate.placeholder = @"Title";
+    _titleTemplate.layer.borderWidth = 1;
+    _titleTemplate.layer.borderColor =[[UIColor blackColor] CGColor];
+    _titleTemplate.layer.cornerRadius = 8;
     
     // テキスト部分設定
-    _textTemplate.placeholder = @"Contents";
+    _textTemplate.layer.borderWidth = 1;
+    _textTemplate.layer.borderColor =[[UIColor blackColor] CGColor];
+    _textTemplate.layer.cornerRadius = 8;
+
+    _textTemplate.text = @"Contents";
+    _textTemplate.textColor = [UIColor lightGrayColor];
     
 }
 
@@ -47,10 +54,33 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
+    if (_textTemplate.textColor == [UIColor lightGrayColor]) {
+        _textTemplate.text = @"";
+        _textTemplate.textColor = [UIColor blackColor];
+    }
+
+    return YES;
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    if (_textTemplate.text.length == 0) {
+        _textTemplate.text = @"Contents";
+        _textTemplate.textColor = [UIColor lightGrayColor];
+    }
+}
+
+
 - (IBAction)cancelAddTemplate:(id)sender {
     NSLog(@"push cancelAddTemplate");
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [_textTemplate insertText:@"\n"];
+    return YES;
+}
+
 
 - (IBAction)saveAddTemplate:(id)sender {
     NSLog(@"push saveAddTemplate");
@@ -87,7 +117,6 @@
     // テンプレートリスト画面に戻る
     [self dismissViewControllerAnimated:YES completion:NULL];
     
-
-    
 }
+
 @end

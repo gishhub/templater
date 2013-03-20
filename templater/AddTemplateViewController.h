@@ -7,17 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
-@interface AddTemplateViewController : UIViewController <UITextFieldDelegate>
+@interface AddTemplateViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
 {
     UITextField *_titleTemplate;
-    UITextField *_textTemplate;
+    UITextView *_textTemplate;
 }
 
 - (IBAction)cancelAddTemplate:(id)sender;
 - (IBAction)saveAddTemplate:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UITextField *titleTemplate;
-@property (strong, nonatomic) IBOutlet UITextField *textTemplate;
+@property (strong, nonatomic) IBOutlet UITextView *textTemplate;
 
 @end

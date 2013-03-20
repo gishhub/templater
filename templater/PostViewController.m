@@ -39,11 +39,34 @@
     
     NSString *tmp = self.selectedTitle;
 
-    selectedTemplateText = [[UITextField alloc] initWithFrame:CGRectMake(10.0, 100.0, 300.0, 40.0)];
-    selectedTemplateText.borderStyle = UITextBorderStyleLine;
+    selectedTemplateText = [[UITextView alloc] initWithFrame:CGRectMake(10.0, 20.0, 300.0, 200.0)];
+    selectedTemplateText.layer.borderWidth = 1;
 
     selectedTemplateText.text = [reverse objectForKey:tmp];
-   
+    
+    
+    //ベースの作成
+    UIButton* accessoryView = [UIButton buttonWithType:UIButtonTypeCustom];
+    accessoryView.frame = CGRectMake(0,0,320,30);
+    [accessoryView addTarget:self action:@selector(closeKeyboard:) forControlEvents:UIControlEventTouchUpInside];
+    
+    // ボタンを作成する。
+    UIButton* closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    // closeButton.frame = CGRectMake(320 - 25,30 - 25,25,25);
+    closeButton.frame = CGRectMake(320 - 40, 30 - 40, 40, 40);
+    closeButton.backgroundColor = [UIColor grayColor];
+    
+    [closeButton setImage:[UIImage imageNamed:@"SampleIcon.png"] forState:UIControlStateNormal];
+
+    // [closeButton setTitle:@" ▼" forState:UIControlStateNormal];
+    [closeButton addTarget:self action:@selector(closeKeyboard:) forControlEvents:UIControlEventTouchUpInside];
+    
+    // ボタンをベースに配置する。
+    [accessoryView addSubview:closeButton];
+    //アクセサリーに設定する
+    selectedTemplateText.inputAccessoryView = accessoryView;
+    
+    
     [self.view addSubview:selectedTemplateText];
 }
 
@@ -81,4 +104,9 @@
     [defaults synchronize];
     
 }
+
+- (IBAction)closeKeyboard:(id)sender {
+    [selectedTemplateText resignFirstResponder];
+}
+
 @end
