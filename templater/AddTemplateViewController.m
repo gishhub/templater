@@ -63,13 +63,14 @@
     return YES;
 }
 
-- (void)textViewDidChange:(UITextView *)textView {
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
     if (_textTemplate.text.length == 0) {
         _textTemplate.text = @"Contents";
         _textTemplate.textColor = [UIColor lightGrayColor];
     }
+    
+    return YES;
 }
-
 
 - (IBAction)cancelAddTemplate:(id)sender {
     NSLog(@"push cancelAddTemplate");
