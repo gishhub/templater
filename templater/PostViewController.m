@@ -32,20 +32,20 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSData *d = [defaults dataForKey:@"TEMPLATE"];
-    NSMutableDictionary *reverse = [NSKeyedUnarchiver unarchiveObjectWithData:d];
-    NSLog(@"%@",reverse);
+    // タイトルリストで選択したタイトルから、テンプレートの中身を取り出す
+    NSUserDefaults      *defaults    = [NSUserDefaults standardUserDefaults];
+    NSData              *data        = [defaults dataForKey:@"TEMPLATE"];
+    NSMutableDictionary *templateDic = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     
     NSString *tmp = self.selectedTitle;
 
-    selectedTemplateText = [[UITextView alloc] initWithFrame:CGRectMake(10.0, 20.0, 300.0, 200.0)];
-    selectedTemplateText.layer.borderWidth = 1;
-    selectedTemplateText.layer.borderColor =[[UIColor blackColor] CGColor];
-    selectedTemplateText.layer.cornerRadius = 8;
+    _selectedTemplateText = [[UITextView alloc] initWithFrame:CGRectMake(10.0, 20.0, 300.0, 200.0)];
+    _selectedTemplateText.layer.borderWidth = 1;
+    _selectedTemplateText.layer.borderColor =[[UIColor blackColor] CGColor];
+    _selectedTemplateText.layer.cornerRadius = 8;
     
 
-    selectedTemplateText.text = [reverse objectForKey:tmp];
+    _selectedTemplateText.text = [templateDic objectForKey:tmp];
     
     
     //ベースの作成
@@ -65,14 +65,14 @@
     // ボタンをベースに配置する。
     [accessoryView addSubview:closeButton];
     //アクセサリーに設定する
-    selectedTemplateText.inputAccessoryView = accessoryView;
+    _selectedTemplateText.inputAccessoryView = accessoryView;
     
     
-    [self.view addSubview:selectedTemplateText];
+    [self.view addSubview:_selectedTemplateText];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField*)textField{
-    [selectedTemplateText resignFirstResponder];
+    [_selectedTemplateText resignFirstResponder];
     return YES;
 }
 
@@ -85,19 +85,18 @@
 - (IBAction)postFb:(id)sender {
     
     SLComposeViewController *facebookPostVC = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-    [facebookPostVC setInitialText:selectedTemplateText.text];
+    [facebookPostVC setInitialText:_selectedTemplateText.text];
     
     [self presentViewController:facebookPostVC animated:YES completion:nil];
 }
 
 - (IBAction)updateTemplate:(id)sender {
-    NSLog(@"Push updateTemplate. %@", selectedTemplateText.text);
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     NSData *d = [defaults dataForKey:@"TEMPLATE"];
     NSMutableDictionary *reverse = [NSKeyedUnarchiver unarchiveObjectWithData:d];
     
-    [reverse setObject:selectedTemplateText.text forKey:self.selectedTitle];
+    [reverse setObject:_selectedTemplateText.text forKey:self.selectedTitle];
     
     NSData *tmp_d = [NSKeyedArchiver archivedDataWithRootObject:reverse];
     [defaults setObject:tmp_d forKey:@"TEMPLATE"];
@@ -107,7 +106,7 @@
 }
 
 - (IBAction)closeKeyboard:(id)sender {
-    [selectedTemplateText resignFirstResponder];
+    [_selectedTemplateText resignFirstResponder];
 }
 
 @end
