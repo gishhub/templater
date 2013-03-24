@@ -10,12 +10,9 @@
 #import "PostViewController.h"
 
 @interface TableViewController : UITableViewController
-{
-    NSMutableArray *tableListData;
-}
-- (IBAction)pressComposeButton:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UITableViewCell *templateCell;
-@property (strong, nonatomic) PostViewController *postViewController;
+@property (weak, nonatomic)   IBOutlet UITableViewCell *templateCell;
+@property (strong, nonatomic) PostViewController       *postViewController;
+@property (strong, nonatomic) NSMutableArray           *tableListData;
 
 @end

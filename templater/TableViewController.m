@@ -14,7 +14,9 @@
 
 @implementation TableViewController
 
+
 @synthesize templateCell = _templateCell;
+@synthesize tableListData = _tableListData;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -36,43 +38,44 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    
-    tableListData = [[NSMutableArray alloc] initWithObjects:nil];
-    
-    // NSUserDefaultsからデータを取得
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSData *d = [defaults dataForKey:@"TEMPLATE"];
-    NSMutableDictionary *dic = [NSKeyedUnarchiver unarchiveObjectWithData:d];
-    
-    NSMutableArray *mary = [NSMutableArray array];
 
+    // HACK: このtableListDataを明示的に記述しなければいけない理由が分からないが、
+    //       コメントアウトするとテンプレートタイトルのリストが表示されない。
+    //       コードをよりシンプルなものにするためには、改善の余地あり。
+    _tableListData = [[NSMutableArray alloc] initWithObjects:nil];  // 表示させるテンプレートタイトルのリスト
     
-    // 取得した辞書のタイトルリストを作り、順番を整える
-    for(NSString *t in dic){
-        [mary addObject:t];
+    // NSUserDefaultsからテンプレート情報{"TITLE" => "CONTENTS"}を取得する。
+    // 例: { "first title" => "This is the first title.\nThere is not the second title." }
+    NSUserDefaults      *defaults          = [NSUserDefaults standardUserDefaults];
+    NSData              *templateDicNSData = [defaults dataForKey:@"TEMPLATE"];
+    NSMutableDictionary *templateDic       = [NSKeyedUnarchiver
+                                              unarchiveObjectWithData:templateDicNSData];
+    
+    // テンプレート情報の辞書から、生タイトルリストを作る。
+    NSMutableArray *rowTitleList = [NSMutableArray array];
+    for(NSString *str in templateDic){
+        [rowTitleList addObject:str];
     }
     
-    NSArray *ary = [mary sortedArrayUsingComparator:^(id obj1, id obj2) {
+    // 生タイトルリストからABC順にソートされたタイトルリストを作成する。
+    NSArray *sortedTitleList = [rowTitleList sortedArrayUsingComparator:^(id obj1, id obj2) {
         return [obj1 compare:obj2];
     }];
     
-    // cellのリストに取得したデータを入れる
-    for(NSString *str in ary){
-        [tableListData addObject:str];
+    // ソートされたタイトルリストを表示用のタイトルリストに代入する。
+    // 以下のようにキャストをすると、不具合が発生するとネット上にあったので、
+    // for文で１つ１つ要素を代入した。
+    //     不具合を起こす代入: _tableListData =  (NSMutableArray *)sortedTitleList;
+    for(NSString *str in sortedTitleList){
+        [_tableListData addObject:str];
     }
 
     // 表示をリロード
     [self.tableView reloadData];
     [super viewWillAppear:animated];
-}
-
-- (IBAction)pressComposeButton:(id)sender {
-
-    NSLog(@"press button.");
 }
 
 
@@ -86,7 +89,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [tableListData count];
+    return [_tableListData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -101,7 +104,7 @@
     
     NSInteger row = [indexPath row];
     cell.textLabel.font = [UIFont boldSystemFontOfSize:18];
-    cell.textLabel.text = [tableListData objectAtIndex:row];
+    cell.textLabel.text = [_tableListData objectAtIndex:row];
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     
     return cell;
@@ -133,13 +136,13 @@
         
         NSData *release = [defaults dataForKey:@"TEMPLATE"];
         NSMutableDictionary *mdic = [NSKeyedUnarchiver unarchiveObjectWithData:release];
-        [mdic removeObjectForKey:tableListData[row]];
+        [mdic removeObjectForKey:_tableListData[row]];
               
         // 新規に入力したテンプレートを保存
         NSData *tmp_d = [NSKeyedArchiver archivedDataWithRootObject:mdic];
         [defaults setObject:tmp_d forKey:@"TEMPLATE"];
         
-        [tableListData removeObjectAtIndex: row];
+        [_tableListData removeObjectAtIndex: row];
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }   
