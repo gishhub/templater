@@ -56,10 +56,10 @@
     // ボタンを作成する。
     UIButton* closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     // closeButton.frame = CGRectMake(320 - 25,30 - 25,25,25);
-    closeButton.frame = CGRectMake(320 - 40, 30 - 40, 40, 40);
+    closeButton.frame = CGRectMake(320 - 50, 30 - 40, 50, 40);
     closeButton.backgroundColor = [UIColor grayColor];
     
-    [closeButton setImage:[UIImage imageNamed:@"SampleIcon.png"] forState:UIControlStateNormal];
+    [closeButton setImage:[UIImage imageNamed:@"CloseTab.png"] forState:UIControlStateNormal];
     [closeButton addTarget:self action:@selector(closeKeyboard:) forControlEvents:UIControlEventTouchUpInside];
     
     // ボタンをベースに配置する。
