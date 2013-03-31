@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B741C29117037271008E6357 /* CloseTab.png in Resources */ = {isa = PBXBuildFile; fileRef = B741C29017037271008E6357 /* CloseTab.png */; };
+		B741C29517083FCE008E6357 /* CloseTab.png in Resources */ = {isa = PBXBuildFile; fileRef = B741C29417083FCE008E6357 /* CloseTab.png */; };
 		B751573116DEA95400DC1C21 /* AddTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B751573016DEA95400DC1C21 /* AddTemplateViewController.m */; };
 		B77F2DFB16ABF15300E2F0C2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F2DFA16ABF15300E2F0C2 /* UIKit.framework */; };
 		B77F2DFD16ABF15300E2F0C2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F2DFC16ABF15300E2F0C2 /* Foundation.framework */; };
@@ -26,7 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B741C29017037271008E6357 /* CloseTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseTab.png; sourceTree = "<group>"; };
+		B741C29417083FCE008E6357 /* CloseTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseTab.png; sourceTree = "<group>"; };
 		B751572F16DEA95400DC1C21 /* AddTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTemplateViewController.h; sourceTree = "<group>"; };
 		B751573016DEA95400DC1C21 /* AddTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTemplateViewController.m; sourceTree = "<group>"; };
 		B77F2DF616ABF15300E2F0C2 /* templater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = templater.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,7 +97,7 @@
 		B77F2E0016ABF15300E2F0C2 /* templater */ = {
 			isa = PBXGroup;
 			children = (
-				B741C29017037271008E6357 /* CloseTab.png */,
+				B741C29417083FCE008E6357 /* CloseTab.png */,
 				B7D567D416DA114800F30014 /* SampleIcon.png */,
 				B77F2E0916ABF15300E2F0C2 /* AppDelegate.h */,
 				B77F2E0A16ABF15300E2F0C2 /* AppDelegate.m */,
@@ -184,7 +184,7 @@
 				B77F2E1116ABF15300E2F0C2 /* Default-568h@2x.png in Resources */,
 				B77F2E1416ABF15300E2F0C2 /* MainStoryboard.storyboard in Resources */,
 				B7D567D516DA114800F30014 /* SampleIcon.png in Resources */,
-				B741C29117037271008E6357 /* CloseTab.png in Resources */,
+				B741C29517083FCE008E6357 /* CloseTab.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
