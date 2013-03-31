@@ -32,17 +32,16 @@
     _titleTemplate.delegate = self;
     _textTemplate.delegate = self;
     
-    // タイトル部分設定
+    // タイトル部分を設定する。
     _titleTemplate.placeholder = @"Title";
     _titleTemplate.layer.borderWidth = 1;
     _titleTemplate.layer.borderColor =[[UIColor blackColor] CGColor];
     _titleTemplate.layer.cornerRadius = 8;
     
-    // テキスト部分設定
+    // テキスト部分を設定する。
     _textTemplate.layer.borderWidth = 1;
     _textTemplate.layer.borderColor =[[UIColor blackColor] CGColor];
     _textTemplate.layer.cornerRadius = 8;
-
     _textTemplate.text = @"Contents";
     _textTemplate.textColor = [UIColor lightGrayColor];
     
@@ -55,6 +54,7 @@
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
+    // テキスト部分に入力をすると、「Contents」の文字を消す。
     if (_textTemplate.textColor == [UIColor lightGrayColor]) {
         _textTemplate.text = @"";
         _textTemplate.textColor = [UIColor blackColor];
@@ -64,6 +64,8 @@
 }
 
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView {
+    // 何も入力されていないテキスト部分から選択を外すと、
+    // 「Contents」が表示される。 
     if (_textTemplate.text.length == 0) {
         _textTemplate.text = @"Contents";
         _textTemplate.textColor = [UIColor lightGrayColor];

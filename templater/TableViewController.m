@@ -56,7 +56,7 @@
     
     // テンプレート情報の辞書から、生タイトルリストを作る。
     NSMutableArray *rowTitleList = [NSMutableArray array];
-    for(NSString *str in templateDic){
+    for(NSString   *str in templateDic){
         [rowTitleList addObject:str];
     }
     
@@ -73,7 +73,7 @@
         [_tableListData addObject:str];
     }
 
-    // 表示をリロード
+    // 表示をリロードする。
     [self.tableView reloadData];
     [super viewWillAppear:animated];
 }
@@ -129,19 +129,19 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        NSInteger row = [indexPath row];
         
-        
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        
-        NSData *release = [defaults dataForKey:@"TEMPLATE"];
-        NSMutableDictionary *mdic = [NSKeyedUnarchiver unarchiveObjectWithData:release];
+        // 編集したするデータを取得する。
+        NSInteger           row        = [indexPath row];
+        NSUserDefaults      *defaults  = [NSUserDefaults standardUserDefaults];
+        NSData              *release   = [defaults dataForKey:@"TEMPLATE"];
+        NSMutableDictionary *mdic      = [NSKeyedUnarchiver unarchiveObjectWithData:release];
         [mdic removeObjectForKey:_tableListData[row]];
               
-        // 新規に入力したテンプレートを保存
-        NSData *tmp_d = [NSKeyedArchiver archivedDataWithRootObject:mdic];
-        [defaults setObject:tmp_d forKey:@"TEMPLATE"];
+        // 新規に入力したテンプレートを保存する。
+        NSData *dic = [NSKeyedArchiver archivedDataWithRootObject:mdic];
+        [defaults setObject:dic forKey:@"TEMPLATE"];
         
+        // 選択したセルを削除する。
         [_tableListData removeObjectAtIndex: row];
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -173,19 +173,19 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    NSUInteger row = [indexPath row];
+    // 選択したセル
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
+    // アニメーション動作で、Post画面に移動する。
+    // 遷移方法を設定する。
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     PostViewController *postViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"detail"];
     
-    postViewController.title = cell.textLabel.text;
+    // Post画面の設定をする。
+    postViewController.title         = cell.textLabel.text;
     postViewController.selectedTitle = cell.textLabel.text;
 
     [[self navigationController] pushViewController:postViewController animated:YES];
-
-
-    NSLog(@"選択された行は『%d行目』です！", row);
 
 }
 

@@ -32,42 +32,37 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    // タイトルリストで選択したタイトルから、テンプレートの中身を取り出す
+    // タイトルリストで選択したタイトルから、NSUserDefaultsに保存しているテンプレートを取り出す。
     NSUserDefaults      *defaults    = [NSUserDefaults standardUserDefaults];
     NSData              *data        = [defaults dataForKey:@"TEMPLATE"];
     NSMutableDictionary *templateDic = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    
-    NSString *tmp = self.selectedTitle;
 
-    _selectedTemplateText = [[UITextView alloc] initWithFrame:CGRectMake(10.0, 20.0, 300.0, 200.0)];
-    _selectedTemplateText.layer.borderWidth = 1;
-    _selectedTemplateText.layer.borderColor =[[UIColor blackColor] CGColor];
+    // Post画面の設定をする。
+    _selectedTemplateText                    = [[UITextView alloc] initWithFrame:CGRectMake(10.0, 20.0, 300.0, 200.0)];
+    _selectedTemplateText.text               = [templateDic objectForKey:self.selectedTitle];
+    _selectedTemplateText.layer.borderWidth  = 1;
+    _selectedTemplateText.layer.borderColor  = [[UIColor blackColor] CGColor];
     _selectedTemplateText.layer.cornerRadius = 8;
     
 
-    _selectedTemplateText.text = [templateDic objectForKey:tmp];
-    
-    
-    //ベースの作成
+    // キーボードの設定をする。
     UIButton* accessoryView = [UIButton buttonWithType:UIButtonTypeCustom];
     accessoryView.frame = CGRectMake(0,0,320,30);
     [accessoryView addTarget:self action:@selector(closeKeyboard:) forControlEvents:UIControlEventTouchUpInside];
     
-    // ボタンを作成する。
+    // "キーボード閉じるボタン"の作成をする。
     UIButton* closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    // closeButton.frame = CGRectMake(320 - 25,30 - 25,25,25);
     closeButton.frame = CGRectMake(320 - 50, 30 - 40, 50, 40);
     closeButton.backgroundColor = [UIColor grayColor];
-    
     [closeButton setImage:[UIImage imageNamed:@"CloseTab.png"] forState:UIControlStateNormal];
     [closeButton addTarget:self action:@selector(closeKeyboard:) forControlEvents:UIControlEventTouchUpInside];
     
-    // ボタンをベースに配置する。
+    // "キーボード閉じるボタン"をキーボードに配置する。
     [accessoryView addSubview:closeButton];
-    //アクセサリーに設定する
+    
+    // "キーボード閉じるボタン"付きキーボードを設定する。
     _selectedTemplateText.inputAccessoryView = accessoryView;
-    
-    
+
     [self.view addSubview:_selectedTemplateText];
 }
 
@@ -91,15 +86,15 @@
 }
 
 - (IBAction)updateTemplate:(id)sender {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    // NSUserDefaultsのデータを取得する。
+    NSUserDefaults      *defaults          = [NSUserDefaults standardUserDefaults];
+    NSData              *templateDicNSData = [defaults dataForKey:@"TEMPLATE"];
+    NSMutableDictionary *templateDic       = [NSKeyedUnarchiver unarchiveObjectWithData:templateDicNSData];
     
-    NSData *d = [defaults dataForKey:@"TEMPLATE"];
-    NSMutableDictionary *reverse = [NSKeyedUnarchiver unarchiveObjectWithData:d];
-    
-    [reverse setObject:_selectedTemplateText.text forKey:self.selectedTitle];
-    
-    NSData *tmp_d = [NSKeyedArchiver archivedDataWithRootObject:reverse];
-    [defaults setObject:tmp_d forKey:@"TEMPLATE"];
+    // テキストビューのテキスト内容を"NSUserDefaultsのデータ"に保存する。
+    [templateDic setObject:_selectedTemplateText.text forKey:self.selectedTitle];
+    NSData *newTemplateDicNSData = [NSKeyedArchiver archivedDataWithRootObject:templateDic];
+    [defaults setObject:newTemplateDicNSData forKey:@"TEMPLATE"];
     
     [defaults synchronize];
     
