@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Social/Social.h>
+#import <iAd/iAd.h> 
 #import <QuartzCore/QuartzCore.h>
 
 @interface PostViewController : UIViewController <UITextViewDelegate> {

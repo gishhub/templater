@@ -21,8 +21,8 @@
 		B79DD62B16CF87FC00502795 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B79DD62A16CF87FC00502795 /* TableViewController.m */; };
 		B7AEC10216DA337000E65C84 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AEC10116DA337000E65C84 /* PostViewController.m */; };
 		B7CE71A916F0B9C700B3237B /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7CE71A816F0B9C700B3237B /* Social.framework */; };
-		B7D567D516DA114800F30014 /* SampleIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B7D567D416DA114800F30014 /* SampleIcon.png */; };
 		B7F8E6681723B0C500E61A49 /* CloseIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B7F8E6671723B0C500E61A49 /* CloseIcon.png */; };
+		B7F8E66A1723E92B00E61A49 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7F8E6691723E92B00E61A49 /* iAd.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,8 +47,8 @@
 		B7AEC10016DA337000E65C84 /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		B7AEC10116DA337000E65C84 /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
 		B7CE71A816F0B9C700B3237B /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		B7D567D416DA114800F30014 /* SampleIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SampleIcon.png; sourceTree = "<group>"; };
 		B7F8E6671723B0C500E61A49 /* CloseIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseIcon.png; sourceTree = "<group>"; };
+		B7F8E6691723E92B00E61A49 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7F8E66A1723E92B00E61A49 /* iAd.framework in Frameworks */,
 				B7CE71A916F0B9C700B3237B /* Social.framework in Frameworks */,
 				B77F2DFB16ABF15300E2F0C2 /* UIKit.framework in Frameworks */,
 				B77F2DFD16ABF15300E2F0C2 /* Foundation.framework in Frameworks */,
@@ -69,6 +70,7 @@
 		B77F2DEB16ABF15300E2F0C2 = {
 			isa = PBXGroup;
 			children = (
+				B7F8E6691723E92B00E61A49 /* iAd.framework */,
 				B7CE71A816F0B9C700B3237B /* Social.framework */,
 				B77F2E0016ABF15300E2F0C2 /* templater */,
 				B77F2DF916ABF15300E2F0C2 /* Frameworks */,
@@ -98,7 +100,6 @@
 			isa = PBXGroup;
 			children = (
 				B7F8E6671723B0C500E61A49 /* CloseIcon.png */,
-				B7D567D416DA114800F30014 /* SampleIcon.png */,
 				B77F2E0916ABF15300E2F0C2 /* AppDelegate.h */,
 				B77F2E0A16ABF15300E2F0C2 /* AppDelegate.m */,
 				B77F2E1216ABF15300E2F0C2 /* MainStoryboard.storyboard */,
@@ -183,7 +184,6 @@
 				B77F2E0F16ABF15300E2F0C2 /* Default@2x.png in Resources */,
 				B77F2E1116ABF15300E2F0C2 /* Default-568h@2x.png in Resources */,
 				B77F2E1416ABF15300E2F0C2 /* MainStoryboard.storyboard in Resources */,
-				B7D567D516DA114800F30014 /* SampleIcon.png in Resources */,
 				B7F8E6681723B0C500E61A49 /* CloseIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

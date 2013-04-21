@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h> 
 #import "PostViewController.h"
 
-@interface TableViewController : UITableViewController
+@interface TableViewController : UITableViewController<ADBannerViewDelegate>
 
+@property (retain, nonatomic) ADBannerView *customAdView;
 @property (weak, nonatomic)   IBOutlet UITableViewCell *templateCell;
 @property (strong, nonatomic) PostViewController       *postViewController;
 @property (strong, nonatomic) NSMutableArray           *tableListData;

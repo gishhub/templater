@@ -15,7 +15,8 @@
 @implementation TableViewController
 
 
-@synthesize templateCell = _templateCell;
+@synthesize customAdView  = _customAdView;
+@synthesize templateCell  = _templateCell;
 @synthesize tableListData = _tableListData;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -37,6 +38,13 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    // iAd広告を画面の下に表示する。
+    self.customAdView = [[ADBannerView alloc] initWithFrame:CGRectMake(0.0, 480.0, 0.0, 0.0)];
+    self.customAdView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
+    self.customAdView.delegate = self;
+    [self.view addSubview:_customAdView];
+    
     
 }
 
@@ -189,6 +197,32 @@
 
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGRect frame = [[UIScreen mainScreen] applicationFrame];
+    float viewHeight = frame.size.height;
+    float adViewWidth = self.customAdView.frame.size.width;
+    float adViewHeight = self.customAdView.frame.size.height;
+    float navBarHeight = self.navigationController.navigationBar.frame.size.height;
+    self.customAdView.center = CGPointMake(adViewWidth / 2, self.tableView.contentOffset.y + viewHeight - navBarHeight - adViewHeight / 2);
+    [self.view bringSubviewToFront:self.customAdView];
+}
 
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    CGRect frame = [[UIScreen mainScreen] applicationFrame];
+    float viewHeight = frame.size.height;
+    float adViewWidth = self.customAdView.frame.size.width;
+    float adViewHeight = self.customAdView.frame.size.height;
+    float navBarHeight = self.navigationController.navigationBar.frame.size.height;
+    [UIView animateWithDuration:2.0
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.customAdView.center = CGPointMake(adViewWidth / 2, self.tableView.contentOffset.y + viewHeight - navBarHeight - adViewHeight / 2);
+                         self.customAdView.alpha = 1.0;
+                     }
+                     completion:nil];
+}
 
 @end

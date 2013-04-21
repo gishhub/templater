@@ -14,7 +14,7 @@
 
 @implementation PostViewController
 
-@synthesize selectedTitle = _selectedTitle;
+@synthesize selectedTitle        = _selectedTitle;
 @synthesize selectedTemplateText = _selectedTemplateText;
 
 
@@ -102,5 +102,6 @@
 - (IBAction)closeKeyboard:(id)sender {
     [_selectedTemplateText resignFirstResponder];
 }
+
 
 @end
