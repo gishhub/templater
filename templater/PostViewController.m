@@ -53,7 +53,7 @@
     // "キーボード閉じるボタン"の作成をする。
     UIButton* closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     closeButton.frame = CGRectMake(320 - 50, 30 - 40, 50, 40);
-    [closeButton setImage:[UIImage imageNamed:@"CloseTab.png"] forState:UIControlStateNormal];
+    [closeButton setImage:[UIImage imageNamed:@"CloseIcon.png"] forState:UIControlStateNormal];
     [closeButton addTarget:self action:@selector(closeKeyboard:) forControlEvents:UIControlEventTouchUpInside];
     
     // "キーボード閉じるボタン"をキーボードに配置する。
