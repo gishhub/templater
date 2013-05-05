@@ -75,7 +75,6 @@
 }
 
 - (IBAction)cancelAddTemplate:(id)sender {
-    NSLog(@"push cancelAddTemplate");
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -86,7 +85,6 @@
 
 
 - (IBAction)saveAddTemplate:(id)sender {
-    NSLog(@"push saveAddTemplate");
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
