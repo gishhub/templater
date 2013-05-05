@@ -43,6 +43,47 @@
     self.customAdView = [[ADBannerView alloc] initWithFrame:CGRectMake(0.0, 480.0, 0.0, 0.0)];
     self.customAdView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
     self.customAdView.delegate = self;
+    
+
+    // デフォルトでアプリ操作の説明を入れる。
+    // テンプレート情報を初期化
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    // テンプレート情報が存在したら、取り出す
+    if([defaults dataForKey:@"TEMPLATE"]){
+        NSData *reverse_tmp = [defaults dataForKey:@"TEMPLATE"];
+        dic = [NSKeyedUnarchiver unarchiveObjectWithData:reverse_tmp];
+    }
+    
+    // 新規に入力したテンプレートを取得
+    NSString *step0_key = @"STEP0 あいさつ";
+    NSString *step0_value = @"Templaterアプリをインストールしてくれて、\nありがとうございますm(_ _)m\n\nこのアプリは、\nSNSへの投稿で使う『定型文』を、\n自分で作成し、\nSNSへの投稿を行うアプリです。\n\n論より証拠で、\nSTEP0 -> STEP1 -> STEP2\nを辿ってみて、\nこのアプリをインストールしたことをSNSに投稿してみてください！！\n";
+    
+    NSString *step1_key = @"STEP1 Facebookへ投稿";
+    NSString *step1_value = @"1. 最初のページの「Sample」をタップ\n\n   「Templaterアプリをインストールしたよー(*´ω｀*)」\n   と書いているのを確認してください。\n   この文章が嫌な人は編集してください(´・ω・｀)\n      \n2. Facebookボタンをタップ\n\n   投稿確認ボタンがでてくるので、\n   文章に問題なければ、「投稿」ボタンをタップ\n   \n3. Facebookに投稿完了！！\n";
+
+    NSString *step2_key = @"STEP2 テンプレート追加";
+    NSString *step2_value = @"1. 最初のページの追加ボタン「+」をタップ\n   \n   新しい画面がでてきて、\n   「Title」と「Contents」の記入箇所があることを確認してください。\n   ↓ のように記入してみてください。\n   \n   Title:    はじめてのテンプレート\n   Contents: 作成成功( ･´ｰ･｀)\n\n2. 保存ボタン「Save」をタップ\n   \n   最初のページにもどると「はじめてのテンプレート」が追加されてることを確認してください！\n\n3. テンプレート追加成功！！\n";
+    
+    NSString *step3_key = @"STEP3 テンプレートを基に投稿";
+    NSString *step3_value = @"1. 最初のページの「はじめてのテンプレート」をタップ\n   \n   「作成成功( ･´ｰ･｀)」と表示されていることを確認してください。\n      \n2. 顔文字を編集\n\n   テンプレートの顔文字「( ･´ｰ･｀)」がえらそうなので、\n   今の気分に合わせた顔文字に編集してください。\n\n3. 投稿！！\n   \n   あとは、「STEP1」と同じように、投稿するだけ！!\n\n\n    \nこれで、チュートリアルは終了です。\n他にもいろいろ機能があるので、試してみたください。\nお付き合い、ありがとうございましたm(_ _)m\n";
+    
+
+    NSString *sample_key = @"Sample";
+    NSString *sample_value = @"Templaterアプリをインストールしたよー(*´ω｀*)";
+    
+    [dic setObject:step0_value forKey:step0_key];
+    [dic setObject:step1_value forKey:step1_key];
+    [dic setObject:step2_value forKey:step2_key];
+    [dic setObject:step3_value forKey:step3_key];
+    [dic setObject:sample_value forKey:sample_key];
+    
+    // 新規に入力したテンプレートを保存
+    NSData *d = [NSKeyedArchiver archivedDataWithRootObject:dic];
+    [defaults setObject:d forKey:@"TEMPLATE"];
+    [defaults synchronize];
+    
     [self.view addSubview:_customAdView];
     
     
