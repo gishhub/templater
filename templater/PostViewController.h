@@ -7,8 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Social/Social.h>
+#import <iAd/iAd.h> 
+#import <QuartzCore/QuartzCore.h>
 
-@interface PostViewController : UIViewController <UITextViewDelegate>
--(void) configureView;
+@interface PostViewController : UIViewController <UITextViewDelegate> {
+    NSString *selectedTitle;
+    UITextView *selectedTemplateText;
+}
+
+@property (strong, nonatomic) NSString *selectedTitle;
+@property (strong, nonatomic) UITextView *selectedTemplateText;
+
+- (IBAction)postFb:(id)sender;
+- (IBAction)updateTemplate:(id)sender;
+- (IBAction)closeKeyboard:(id)sender ;
 
 @end
